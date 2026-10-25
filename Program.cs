@@ -20,6 +20,10 @@ builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+    // Name operations after their action method so NSwag generates LoginAsync, MeAsync, etc.
+    options.CustomOperationIds(api =>
+        api.ActionDescriptor.RouteValues.TryGetValue("action", out var action) ? action : null);
+
     // Adds an "Authorize" button to Swagger UI for pasting an access token
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {

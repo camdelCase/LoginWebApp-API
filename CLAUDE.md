@@ -15,6 +15,7 @@ dotnet run --launch-profile https     # https://localhost:7255 + http://localhos
 dotnet ef migrations add <Name> --output-dir Data/Migrations
 dotnet ef database update             # apply migrations to the LocalDB database
 docker build -t loginwebapp-api .       # container listens on 8080 (http) / 8081 (https)
+nswag run nswag.json                  # regenerate Clients/ApiClient.cs (app must be running on :5154)
 ```
 
 `LoginWebApp.Api.http` holds sample register → login → `/api/user/me` requests.
